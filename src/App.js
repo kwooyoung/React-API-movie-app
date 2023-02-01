@@ -11,13 +11,11 @@ function App() {
       return;
     }
     setToDos((currentArray) => [toDo, ...currentArray]);
-    //나머지 매개변수를 이용해서 작성한 toDo 리스트를 toDos에 저장
-    setToDo("");
   };
-  console.log(toDos);
+  console.log(toDo);
   return (
     <div>
-      <h1>My To Dos ({toDos.length})</h1>
+      <h1>오늘 할일 ({toDos.length})</h1>
       <form onSubmit={onSubmit}>
         <input
           value={toDo}
@@ -29,8 +27,8 @@ function App() {
       </form>
       <hr />
       <ul>
-        {toDos.map((item) => (
-          <li>{item}</li>
+        {toDos.map((item, index) => (
+          <li key={index}>{item}</li>
         ))}
       </ul>
     </div>
