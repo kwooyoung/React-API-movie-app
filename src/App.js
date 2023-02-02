@@ -16,7 +16,7 @@ function App() {
   }, []);
   return (
     <div>
-      <h1>The Coins! ({coins.length})</h1>
+      <h1>The Coins ({coins.length})</h1>
       {loading ? <strong>Loading...</strong> : null}
       <ul>
         {coins.map((coin) => (
