@@ -6,6 +6,8 @@ function App() {
   const [coins, setCoins] = useState([]);
   const [price, setPrice] = useState(0);
   const [amount, setAmount] = useState(0);
+  const KW = Math.floor(price * 1222).toLocal;
+
   useEffect(() => {
     fetch("https://api.coinpaprika.com/v1/tickers")
       .then((response) => response.json())
@@ -28,6 +30,7 @@ function App() {
     } = event;
     setPrice(coins[value].quotes.USD.price);
   };
+  const kw = Math.floor(price * 1222).toLocaleString();
 
   return (
     <div>
@@ -45,22 +48,42 @@ function App() {
       )}
       <hr />
       <div>
-        <h2> 1COIN = {price} USD</h2>
+        <h2>
+          {" "}
+          1COIN = {price} USD {`(약 ${kw}원)`}
+        </h2>
+      </div>
+      <span>
+        <input
+          type="text"
+          placeholder="USD"
+          value={amount}
+          onChange={handleInput}
+        />{" "}
+        USD
+      </span>
+      <span> = </span>
+      <strong>
+        {amount / price} {amount / price <= 1 ? "COIN" : "COINS"}
+      </strong>
+      <div>
+        <hr />
         <span>
           <input
-            type="number"
+            type="text"
             placeholder="USD"
             value={amount}
             onChange={handleInput}
           />{" "}
-          USD
+          원
         </span>
         <span> = </span>
         <strong>
-          {amount / price} {amount / price <= 1 ? "COIN" : "COINS"}
+          {amount / price / 1222} {amount / price <= 1 ? "COIN" : "COINS"}
         </strong>
       </div>
     </div>
   );
 }
+
 export default App;
