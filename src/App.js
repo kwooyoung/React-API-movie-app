@@ -35,7 +35,9 @@ function App() {
           {movies.map((movie) => (
             <div key={movie.id}>
               <img src={movie.medium_cover_image} />
-              <h2>{movie.title_long}</h2>
+              <a href={movie.url}>
+                <h2>{movie.title_long}</h2>
+              </a>
 
               <p>{movie.summary}</p>
 
